@@ -1,0 +1,485 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+    scroll-behavior: smooth;
+}
+
+body {
+
+    background: linear-gradient(160deg, #001a22, #003c44, #000c10, #003c44, #001a22);
+    background-size: 300% 300%;
+    animation: gradientBG 12s ease infinite;
+
+    color: white;
+
+    overflow-x: hidden;
+
+}
+
+/* BACKGROUND ANIMATION */
+
+@keyframes gradientBG {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* NAVBAR */
+
+nav {
+
+    position: fixed;
+
+    top: 0;
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 60px;
+
+    background: rgba(0, 0, 0, 0.3);
+
+    backdrop-filter: blur(10px);
+
+    z-index: 1000;
+
+}
+
+nav h2 {
+
+    color: #5ffaff;
+
+}
+
+nav ul {
+
+    display: flex;
+
+    gap: 40px;
+
+    list-style: none;
+
+}
+
+nav a {
+
+    text-decoration: none;
+
+    color: white;
+
+    opacity: 0.8;
+
+}
+
+nav a:hover {
+
+    color: #5ffaff;
+
+}
+
+
+/* SECTIONS */
+
+section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 120px 20px;
+
+}
+
+
+/* HERO */
+
+.hero h1 {
+
+    font-size: 70px;
+
+}
+
+.hero p {
+
+    margin-top: 10px;
+
+    opacity: 0.8;
+
+}
+
+.start-btn {
+
+    margin-top: 30px;
+
+    padding: 14px 35px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #5ffaff;
+
+    color: black;
+
+    cursor: pointer;
+
+}
+
+
+/* ORB */
+
+.orb {
+
+    width: 220px;
+
+    height: 220px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle, #5ffaff, #004f55);
+
+    box-shadow: 0 0 70px #00eaff;
+
+    margin: 40px;
+
+    animation: float 6s ease-in-out infinite;
+
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+
+/* INPUT */
+
+.search-box {
+
+    margin-top: 20px;
+
+}
+
+input {
+
+    padding: 15px;
+
+    border-radius: 30px;
+
+    border: none;
+
+    width: 250px;
+
+}
+
+.analyze {
+
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #5ffaff;
+
+    cursor: pointer;
+
+}
+
+
+/* QUICK */
+
+.quick {
+
+    margin-top: 25px;
+
+    display: flex;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+}
+
+.quick button {
+
+    background: #173b44;
+
+    color: white;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+}
+
+
+/* RESULT */
+
+.result {
+
+    margin-top: 40px;
+
+    background: #0c1c22;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    width: 350px;
+
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+
+}
+
+
+/* BARS */
+
+.bar {
+
+    height: 10px;
+
+    background: #1d3a42;
+
+    border-radius: 10px;
+
+    margin: 12px 0;
+
+    overflow: hidden;
+
+}
+
+.fill {
+
+    height: 100%;
+
+    background: #5ffaff;
+
+    width: 0%;
+
+    animation: loadbar 2s forwards;
+
+}
+
+@keyframes loadbar {
+
+    from {
+        width: 0
+    }
+
+}
+
+
+/* TEXT */
+
+.problem-text {
+
+    max-width: 600px;
+
+    opacity: 0.8;
+
+    line-height: 1.7;
+
+}
+
+.how {
+
+    max-width: 700px;
+
+    line-height: 1.7;
+
+    opacity: 0.85;
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:768px) {
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    nav {
+        padding: 15px 20px;
+    }
+
+    nav ul {
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .orb {
+        width: 160px;
+        height: 160px;
+    }
+
+    .result {
+        width: 90%;
+    }
+
+}
+
+/* SECTION DIVIDERS */
+
+section {
+    position: relative;
+}
+
+/* خط فاصل بين الأقسام */
+
+section::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 60%;
+
+    height: 1px;
+
+    background: linear-gradient(90deg, transparent, #5ffaff, transparent);
+
+    opacity: 0.4;
+
+}
+
+/* مسافة أكبر بين الأقسام */
+
+#problem,
+#experiment,
+#analysis,
+#how {
+
+    margin-top: 80px;
+
+}
+
+/* شكل خاص لكل قسم */
+
+#problem {
+
+    background: rgba(0, 0, 0, 0.15);
+
+}
+
+#experiment {
+
+    background: rgba(0, 0, 0, 0.05);
+
+}
+
+#analysis {
+
+    background: rgba(0, 0, 0, 0.2);
+
+}
+
+#how {
+
+    background: rgba(0, 0, 0, 0.08);
+
+}
+
+/* أنميشن ظهور القسم */
+
+section {
+
+    animation: fadeIn 1s ease;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* PAGE MODE - hide sections */
+
+#problem,
+#how {
+    display: none;
+}
+
+#problem {
+    text-align: center;
+    max-width: 800px;
+    margin: 120px auto;
+}
+
+#problem h2 {
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.problem-text {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #ddd;
+    margin-left: 70px;
+}
+
+#how {
+    text-align: center;
+    max-width: 800px;
+    margin: 120px auto;
+}

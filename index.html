@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Taste Signal</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <h2>TestSafe</h2>
+
+        <ul>
+
+            <li><a href="#experiment">Experiment</a></li>
+            <li><a href="#analysis">Analysis</a></li>
+            <li><a href="#problem">The Problem</a></li>
+            <li><a href="#how">How it Works</a></li>
+
+        </ul>
+
+    </nav>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>AI Taste Signal</h1>
+
+        <p id="typing"></p>
+
+        <button class="start-btn" onclick="scrollToExperiment()">
+            Start Experiment
+        </button>
+
+    </section>
+
+    <!-- PROBLEM -->
+
+    <section id="problem">
+
+        <h2>The Problem</h2>
+
+        <p class="problem-text">
+
+            Food flavors are complex chemical signals.
+            Humans taste them using biological sensors.
+
+            But what if flavor could be simulated digitally
+            using signal patterns before real AI tasting systems exist?
+
+        </p>
+
+    </section>
+
+    <!-- EXPERIMENT -->
+
+    <section id="experiment">
+
+        <div class="orb"></div>
+
+        <div class="search-box">
+
+            <input id="foodInput" placeholder="Enter food..." />
+
+            <button class="analyze" onclick="analyzeFood()">
+                Analyze
+            </button>
+
+        </div>
+
+        <!-- QUICK START -->
+
+        <div class="quick">
+
+            <button onclick="quick('chocolate')">Chocolate</button>
+            <button onclick="quick('lemon')">Lemon</button>
+            <button onclick="quick('coffee')">Coffee</button>
+            <button onclick="quick('pizza')">Pizza</button>
+
+        </div>
+
+    </section>
+
+    <!-- ANALYSIS RESULT -->
+
+    <section id="analysis">
+
+        <div class="result">
+
+            <h3>Flavor Signal</h3>
+
+            <div id="bars"></div>
+
+            <p id="pwm"></p>
+
+            <h4>Explain Result</h4>
+
+            <p id="explain"></p>
+
+        </div>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+
+    <section id="how">
+
+        <div class="how">
+
+            <h2>How it Works</h2>
+
+            <p>
+
+                The system maps food names to simulated flavor signals.
+
+                Each food generates different taste components:
+
+                Sweet
+                Sour
+                Salty
+                Bitter
+
+                These signals are represented using PWM-like values
+                to simulate intensity.
+
+                This experiment demonstrates a conceptual AI taste model.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        const typingText = "Start the experiment — taste signals generated before real AI.";
+
+        let i = 0;
+
+        function typeEffect() {
+
+            if (i < typingText.length) {
+
+                document.getElementById("typing").innerHTML += typingText.charAt(i);
+
+                i++;
+
+                setTimeout(typeEffect, 40);
+
+            }
+
+        }
+
+        typeEffect();
+
+
+        function scrollToExperiment() {
+
+            document.getElementById("experiment").scrollIntoView({ behavior: "smooth" });
+
+        }
+
+
+        function quick(food) {
+
+            document.getElementById("foodInput").value = food;
+
+            analyzeFood();
+
+        }
+
+
+        const explanations = {
+
+            lemon: "Lemon produces a strong sour signal because of citric acid molecules stimulating sour receptors.",
+
+            chocolate: "Chocolate has strong sweet and mild bitter signals caused by sugar and cocoa compounds.",
+
+            coffee: "Coffee produces a strong bitter signal due to caffeine and roasted compounds.",
+
+            pizza: "Pizza creates balanced signals between salty, umami, and mild sweetness from tomato sauce.",
+
+            burger: "Burger has strong savory and salty signals due to fats and seasoning.",
+
+            apple: "Apples produce a mix of sweet and sour due to natural sugars and malic acid."
+
+        };
+
+
+        function analyzeFood() {
+
+            let food = document.getElementById("foodInput").value.toLowerCase();
+
+            let sweet = Math.floor(Math.random() * 80);
+            let sour = Math.floor(Math.random() * 80);
+            let salty = Math.floor(Math.random() * 80);
+            let bitter = Math.floor(Math.random() * 80);
+
+            document.getElementById("bars").innerHTML = `
+
+Sweet ${sweet}%
+
+<div class="bar"><div class="fill" style="width:${sweet}%"></div></div>
+
+Sour ${sour}%
+
+<div class="bar"><div class="fill" style="width:${sour}%"></div></div>
+
+Salty ${salty}%
+
+<div class="bar"><div class="fill" style="width:${salty}%"></div></div>
+
+Bitter ${bitter}%
+
+<div class="bar"><div class="fill" style="width:${bitter}%"></div></div>
+
+`;
+
+            let pwm = Math.floor((sweet + sour + salty + bitter) / 4);
+
+            document.getElementById("pwm").innerHTML =
+                "PWM Signal: " + pwm + " | Frequency: " + (200 + pwm) + "Hz";
+
+
+            document.getElementById("explain").innerHTML = explanations[food] || "This food generates a mixed flavor signal pattern based on simulated taste receptors.";
+
+            document.getElementById("analysis").scrollIntoView({ behavior: "smooth" });
+
+        }
+
+
+        /* PAGE NAVIGATION */
+
+        const hero = document.querySelector(".hero");
+        const experiment = document.getElementById("experiment");
+        const analysis = document.getElementById("analysis");
+        const problem = document.getElementById("problem");
+        const how = document.getElementById("how");
+
+        problem.style.display = "none";
+        how.style.display = "none";
+
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach(link => {
+
+            link.addEventListener("click", function (e) {
+
+                const target = this.getAttribute("href");
+
+                if (target === "#problem" || target === "#how") {
+
+                    e.preventDefault();
+
+                    hero.style.display = "none";
+                    experiment.style.display = "none";
+                    analysis.style.display = "none";
+
+                    problem.style.display = "none";
+                    how.style.display = "none";
+
+                    document.querySelector(target).style.display = "block";
+
+                }
+
+                if (target === "#experiment" || target === "#analysis") {
+
+                    hero.style.display = "block";
+                    experiment.style.display = "block";
+                    analysis.style.display = "block";
+
+                    problem.style.display = "none";
+                    how.style.display = "none";
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
